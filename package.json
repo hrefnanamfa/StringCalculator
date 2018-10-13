@@ -1,0 +1,13 @@
+{
+  "name": "hugb_tdd_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watchAll",
+    "clean": "rm -rf node_modules"
+  },
+  "author": "Hrefna",
+  "license": "ISC"
+}

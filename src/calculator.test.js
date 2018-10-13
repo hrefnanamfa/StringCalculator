@@ -35,3 +35,7 @@ it("should ignore numbers bigger than 1000", () => {
 it("should split numbers with given delimiter", () => {
 	expect(add("//;\n1;2")).toBe(3);
 });
+
+it("should split numbers with given delimiter", () => {
+	expect(add("//!\n1!2,3\n4")).toBe(10);
+});

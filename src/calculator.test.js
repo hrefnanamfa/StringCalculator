@@ -16,3 +16,7 @@ it("should return sum of two given numbers", () => {
 it("should return sum of multiple numbers", () => {
 	expect(add("1,2,3,4")).toBe(10);
 });
+
+it("should sumarize numbers on , and \n", () => {
+	expect(add("1,2,3\n4")).toBe(10);
+});

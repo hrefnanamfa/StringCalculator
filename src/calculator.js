@@ -4,8 +4,8 @@ function add(number) {
 	if(number == "")
 		return 0;
 	
-	if(number.includes(",")) {
-		var numberArray = number.split(",");
+	if(number.includes(",") || number.includes("\n")) {
+		var numberArray = number.split(/[\n,]+/);
 		return sum(numberArray);
 	}
 	return parseInt(number);	

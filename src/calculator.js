@@ -3,6 +3,22 @@
 function add(number) {
 	if(number == "")
 		return 0;
+
+	if(number[0] == "/" && number[1] == "/"){
+		var delimiter = "";
+		var i = 2;
+		while(number[i] != "\n"){
+			delimiter += number[i];
+			i++;
+		}
+		var substr = number.substr(number.indexOf("\n") + 1);
+		var regex = new RegExp(delimiter, "g");
+		number = substr.replace(regex, ",");
+		numberArray = number.split(/[\n,]+/);
+
+		findNegatives(numberArray);
+		return sum(numberArray);
+	}
 	
 	if(number.includes(",") || number.includes("\n")) {
 		var numberArray = number.split(/[\n,]+/);

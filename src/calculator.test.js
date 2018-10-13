@@ -20,3 +20,10 @@ it("should return sum of multiple numbers", () => {
 it("should sumarize numbers on , and \n", () => {
 	expect(add("1,2,3\n4")).toBe(10);
 });
+
+it("should throw exception 'Negatives not allowed:' and list all negative numbers", () => {
+	function throwError() {
+		add("1,-2,3");
+	}
+	expect(throwError).toThrowError("Negatives not allowed: -2");
+});

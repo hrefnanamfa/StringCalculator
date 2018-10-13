@@ -1,36 +1,35 @@
 //calculator.js
 
 function add(numbers) {
-	if(numbers == "")
+	if(numbers == "") //for empty string
 		return 0;
+	if(numbers.length == 1) //if only one number
+		return parseInt(numbers);
 
-	if(numbers[0] == "/" && numbers[1] == "/"){
-		var delimiter = "";
-		var i = 2;
-		while(numbers[i] != "\n"){
-			delimiter += numbers[i];
-			i++;
-		}
-		var substr = numbers.substr(numbers.indexOf("\n") + 1);
-		var regex = new RegExp(delimiter, "g");
-		numbers = substr.replace(regex, ",");
-		numberArray = numbers.split(/[\n,]+/);
-
-		findNegatives(numberArray);
-		return sum(numberArray);
+	if(numbers[0] == "/" && numbers[1] == "/") { //for  given delimiter
+		var delimiter = getDelimiter(numbers); // get delimiter
+		var substr = numbers.substr(numbers.indexOf("\n") + 1); // get numbers in string
+		var regex = new RegExp(delimiter, "g"); // make regular expression object to match text with delimiter ("g" to find all matches)
+		numbers = substr.replace(regex, ","); // replace delimiter with ,
 	}
+
+	var numberArray = numbers.split(/[\n,]+/); // make array that splits on , or \n
+	findNegatives(numberArray); // check  for negatives
 	
-	if(numbers.includes(",") || numbers.includes("\n")) {
-		var numberArray = numbers.split(/[\n,]+/);
-		
-		findNegatives(numberArray);
-		
-		return sum(numberArray);
-	}
-	return parseInt(numbers);	
+	return sum(numberArray);
 }
 
-function findNegatives(numberArray) {
+function getDelimiter(numbers) { //finds and returns delimiter in string
+	var delimiter = "";
+	var i = 2; // where delimiter starts
+	while(numbers[i] != "\n"){ // while we are not where delimiter ends
+		delimiter += numbers[i];
+		i++;
+	}
+	return delimiter;
+}
+
+function findNegatives(numberArray) { //throws exception if array has a negative
 	var negativeArray = [];
 	for(var i = 0; i < numberArray.length; i++){
 		if(parseInt(numberArray[i]) < 0){
@@ -41,10 +40,10 @@ function findNegatives(numberArray) {
 		throw new Error("Negatives not allowed: " + negativeArray.toString());
 }
 
-function sum(numberArray) {
+function sum(numberArray) { // returns sum of array
 	var total = 0;
 	for(var i = 0; i < numberArray.length; i++){
-		if(parseInt(numberArray[i]) <= 1000) {
+		if(parseInt(numberArray[i]) <= 1000) { // ignore numbers > 1000
 			total += parseInt(numberArray[i]);
 		}
 	}

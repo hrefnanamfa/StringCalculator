@@ -1,33 +1,33 @@
 //calculator.js
 
-function add(number) {
-	if(number == "")
+function add(numbers) {
+	if(numbers == "")
 		return 0;
 
-	if(number[0] == "/" && number[1] == "/"){
+	if(numbers[0] == "/" && numbers[1] == "/"){
 		var delimiter = "";
 		var i = 2;
-		while(number[i] != "\n"){
-			delimiter += number[i];
+		while(numbers[i] != "\n"){
+			delimiter += numbers[i];
 			i++;
 		}
-		var substr = number.substr(number.indexOf("\n") + 1);
+		var substr = numbers.substr(numbers.indexOf("\n") + 1);
 		var regex = new RegExp(delimiter, "g");
-		number = substr.replace(regex, ",");
-		numberArray = number.split(/[\n,]+/);
+		numbers = substr.replace(regex, ",");
+		numberArray = numbers.split(/[\n,]+/);
 
 		findNegatives(numberArray);
 		return sum(numberArray);
 	}
 	
-	if(number.includes(",") || number.includes("\n")) {
-		var numberArray = number.split(/[\n,]+/);
+	if(numbers.includes(",") || numbers.includes("\n")) {
+		var numberArray = numbers.split(/[\n,]+/);
 		
 		findNegatives(numberArray);
 		
 		return sum(numberArray);
 	}
-	return parseInt(number);	
+	return parseInt(numbers);	
 }
 
 function findNegatives(numberArray) {
